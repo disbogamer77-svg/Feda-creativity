@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Cairo', 'Tajawal', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  
+  --color-gold-50: #fdfae7;
+  --color-gold-100: #faf1c3;
+  --color-gold-200: #f5e286;
+  --color-gold-300: #eec844;
+  --color-gold-400: #e5ac1d;
+  --color-gold-500: #c98e12;
+  --color-gold-600: #a76d0d;
+  --color-gold-700: #804d0d;
+  --color-gold-800: #693e11;
+  --color-gold-900: #5b3414;
+  --color-navy-50: #f0f3fa;
+  --color-navy-100: #dde5f3;
+  --color-navy-200: #c0cde9;
+  --color-navy-300: #94abda;
+  --color-navy-400: #6182c8;
+  --color-navy-500: #3e5faf;
+  --color-navy-600: #304991;
+  --color-navy-700: #273a76;
+  --color-navy-800: #1b264f;
+  --color-navy-900: #111833;
+  --color-navy-950: #0a0e20;
+}
+
+@layer utilities {
+  .rtl-grid {
+    direction: rtl;
+  }
+  .ltr-grid {
+    direction: ltr;
+  }
+  .glow-gold {
+    text-shadow: 0 0 15px rgba(229, 172, 29, 0.65), 0 0 4px rgba(229, 172, 29, 0.3);
+  }
+  .glow-white {
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.45), 0 0 4px rgba(255, 255, 255, 0.2);
+  }
+}
+
