@@ -24,6 +24,7 @@ import {
   Building
 } from "lucide-react";
 import { translations, coursesList, Course } from "./translations";
+import fedaLogo from "./assets/images/feda_logo_1782447556197.jpg";
 
 export default function App() {
   const [lang, setLang] = useState<'ar' | 'en'>('ar');
@@ -119,13 +120,15 @@ export default function App() {
   ];
 
   return (
-    <div className={`min-h-screen bg-[#070b19] text-gray-100 font-sans ${isRtl ? 'rtl-grid' : 'ltr-grid'} selection:bg-gold-400 selection:text-navy-950 overflow-x-hidden`}>
+    <div className={`min-h-screen bg-[#070b19] text-gray-100 font-sans ${isRtl ? 'rtl-grid' : 'ltr-grid'} selection:bg-gold-400 selection:text-navy-950 overflow-x-hidden w-full max-w-full`}>
       
-      {/* Background Decorative Grid and Glows */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c1635_1px,transparent_1px),linear-gradient(to_bottom,#0c1635_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-[30%] right-10 w-80 h-80 bg-navy-500/20 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-[20%] left-5 w-72 h-72 bg-gold-400/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* Background Decorative Grid and Glows wrapped in safe overflow-hidden container */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c1635_1px,transparent_1px),linear-gradient(to_bottom,#0c1635_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-[30%] right-10 w-80 h-80 bg-navy-500/20 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-[20%] left-5 w-72 h-72 bg-gold-400/5 rounded-full blur-[100px] pointer-events-none" />
+      </div>
 
       {/* HEADER NAVBAR */}
       <header 
@@ -141,8 +144,13 @@ export default function App() {
             {/* Logo and Institution Title */}
             <a href="#home" className="flex items-center gap-3 group focus:outline-none">
               <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-gold-600 to-gold-400 p-[1.5px] shadow-md shadow-gold-500/10 transition-transform duration-300 group-hover:scale-105">
-                <div className="w-full h-full bg-navy-950 rounded-[10px] flex items-center justify-center">
-                  <GraduationCap className="w-5.5 h-5.5 text-gold-400" />
+                <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={fedaLogo} 
+                    alt="Feda Creativity Logo" 
+                    className="w-full h-full object-cover rounded-[10px]"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
               </div>
               <div className="flex flex-col">
@@ -931,8 +939,13 @@ export default function App() {
             {/* Logo copyright */}
             <div className="flex flex-col items-center md:items-start space-y-2">
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-md bg-gold-500 flex items-center justify-center">
-                  <GraduationCap className="w-3.5 h-3.5 text-navy-950" />
+                <div className="w-6 h-6 rounded-md bg-white flex items-center justify-center overflow-hidden border border-gold-400">
+                  <img 
+                    src={fedaLogo} 
+                    alt="Feda Creativity Logo" 
+                    className="w-full h-full object-cover rounded-md"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
                 <span className="font-bold text-sm text-white">{isRtl ? "مؤسسة فداء للتدريب" : "Feda Creativity"}</span>
               </div>
