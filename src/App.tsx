@@ -24,7 +24,6 @@ import {
   Building
 } from "lucide-react";
 import { translations, coursesList, Course } from "./translations";
-import fedaLogo from "./assets/images/feda_logo_1782447556197.jpg";
 
 export default function App() {
   const [lang, setLang] = useState<'ar' | 'en'>('ar');
@@ -47,7 +46,7 @@ export default function App() {
 
   // Load language preference from localStorage if available
   useEffect(() => {
-    const savedLang = localStorage.getItem('feda_lang') as 'ar' | 'en';
+    const savedLang = localStorage.getItem('vt_lang') as 'ar' | 'en';
     if (savedLang) {
       setLang(savedLang);
     }
@@ -56,7 +55,7 @@ export default function App() {
   const toggleLanguage = () => {
     const newLang = lang === 'ar' ? 'en' : 'ar';
     setLang(newLang);
-    localStorage.setItem('feda_lang', newLang);
+    localStorage.setItem('vt_lang', newLang);
   };
 
   // Scroll detection for navbar style
@@ -93,16 +92,16 @@ export default function App() {
 
   const triggerWhatsAppRegistration = (courseName: string = "") => {
     const defaultMsg = isRtl 
-      ? `مرحباً مؤسسة فداء للتدريب، أود الاستفسار والتسجيل في الدورات والبرامج التدريبية المتاحة.`
-      : `Hello Feda Creativity, I would like to inquire about registering for your training programs.`;
+      ? `مرحباً شركة التدريب المهني، أود الاستفسار والتسجيل في الدورات والبرامج التدريبية المتاحة.`
+      : `Hello, I would like to inquire about registering for your training programs.`;
     
     const filledMsg = isRtl
-      ? `مرحباً مؤسسة فداء، أنا المتدرب ${formData.name || 'المهتم'}. أرغب بالتسجيل في دورة: ${courseName || formData.courseId || 'برامجكم المعتمدة'}. رقمي هو: ${formData.phone || 'المرفق'}.`
-      : `Hello Feda, I am ${formData.name || 'interested'}. I would like to register for the course: ${courseName || formData.courseId || 'your accredited programs'}. My contact: ${formData.phone || 'provided'}.`;
+      ? `مرحباً، أنا المتدرب ${formData.name || 'المهتم'}. أرغب بالتسجيل في دورة: ${courseName || formData.courseId || 'برامجكم المعتمدة'}. رقمي هو: ${formData.phone || 'المرفق'}.`
+      : `Hello, I am ${formData.name || 'interested'}. I would like to register for the course: ${courseName || formData.courseId || 'your accredited programs'}. My contact: ${formData.phone || 'provided'}.`;
 
     const finalMsg = encodeURIComponent(formData.name ? filledMsg : defaultMsg);
-    // WhatsApp URL
-    window.open(`https://wa.me/9647703177889?text=${finalMsg}`, '_blank', 'noopener,noreferrer');
+    // WhatsApp URL masked with XXX
+    window.open(`https://wa.me/XXX?text=${finalMsg}`, '_blank', 'noopener,noreferrer');
   };
 
   // Filter courses based on active categories
@@ -144,21 +143,16 @@ export default function App() {
             {/* Logo and Institution Title */}
             <a href="#home" className="flex items-center gap-3 group focus:outline-none">
               <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-gold-600 to-gold-400 p-[1.5px] shadow-md shadow-gold-500/10 transition-transform duration-300 group-hover:scale-105">
-                <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center overflow-hidden">
-                  <img 
-                    src={fedaLogo} 
-                    alt="Feda Creativity Logo" 
-                    className="w-full h-full object-cover rounded-[10px]"
-                    referrerPolicy="no-referrer"
-                  />
+                <div className="w-full h-full bg-navy-950 rounded-[10px] flex items-center justify-center">
+                  <GraduationCap className="w-5.5 h-5.5 text-gold-400" />
                 </div>
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-base sm:text-lg tracking-tight bg-gradient-to-r from-white via-gray-100 to-gold-200 bg-clip-text text-transparent">
-                  {isRtl ? "مؤسسة فداء" : "Feda Creativity"}
+                  {isRtl ? "شركة التدريب المهني" : "Vocational Training"}
                 </span>
                 <span className="text-[10px] text-gold-400/90 font-medium tracking-wider uppercase -mt-1">
-                  {isRtl ? "للإبداع والتطوير" : "Training & Development"}
+                  {isRtl ? "للتميز والريادة" : "Excellence & Growth"}
                 </span>
               </div>
             </a>
@@ -329,7 +323,7 @@ export default function App() {
                 <div className="absolute inset-0 z-0">
                   <img 
                     src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=800"
-                    alt="Feda Educational Center"
+                    alt="Educational Center"
                     className="w-full h-full object-cover opacity-25"
                     referrerPolicy="no-referrer"
                   />
@@ -346,7 +340,7 @@ export default function App() {
                       <div className="w-3.5 h-3.5 rounded-full bg-yellow-500/80" />
                       <div className="w-3.5 h-3.5 rounded-full bg-green-500/80" />
                     </div>
-                    <span className="font-mono text-[10px] text-gray-400 tracking-widest uppercase">{isRtl ? "مؤسسة فداء للإبداع" : "FEDA CREATIVITY"}</span>
+                    <span className="font-mono text-[10px] text-gray-400 tracking-widest uppercase">{isRtl ? "التدريب المهني" : "VOCATIONAL TRAINING"}</span>
                   </div>
 
                   {/* Main Visual content */}
@@ -569,7 +563,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* WHY CHOOSE FEDA SECTION */}
+      {/* WHY CHOOSE US SECTION */}
       <section id="why-us" className="relative py-24 bg-slate-50 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -687,7 +681,7 @@ export default function App() {
               <div className="relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-2xl p-[1px] aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/11]">
                 {/* Embedded Map Frame */}
                 <iframe
-                  title="Feda Creativity Google Maps Location"
+                  title="Google Maps Location"
                   src="https://maps.google.com/maps?q=%D8%A7%D9%84%D8%A8%D8%B5%D8%B1%D8%A9%D8%8C%20%D8%A7%D9%84%D8%AC%D8%A8%D9%84%D9%8A%D8%A9%D8%8C%20%D8%A8%D8%AF%D8%A7%D9%8A%D8%A9%20%D8%B4%D8%A7%D8%B1%D8%B9%20%D8%A7%D9%84%D8%B3%D8%A7%D9%8A%D9%84%D9%88&t=&z=16&ie=UTF8&iwloc=&output=embed"
                   className="w-full h-full rounded-2xl filter contrast-[1.05] brightness-[0.95] grayscale-[10%]"
                   style={{ border: 0 }}
@@ -723,18 +717,17 @@ export default function App() {
                 
                 <div className="space-y-3">
                   {/* Phone */}
-                  <a 
-                    href="tel:+9647703177889"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-[#0c1229]/60 border border-navy-800 hover:border-gold-500/30 transition-all group cursor-pointer"
+                  <div 
+                    className="flex items-center gap-4 p-4 rounded-xl bg-[#0c1229]/60 border border-navy-800 hover:border-gold-500/30 transition-all group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-gold-400/5 group-hover:bg-gold-500/10 flex items-center justify-center shrink-0">
                       <Phone className="w-4 h-4 text-gold-400" />
                     </div>
                     <div className="flex flex-col text-right">
                       <span className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">{isRtl ? "الهاتف" : "Phone Number"}</span>
-                      <span className="text-sm sm:text-base text-white font-semibold tracking-wide ltr-grid">+964 770 317 7889</span>
+                      <span className="text-sm sm:text-base text-white font-semibold tracking-wide ltr-grid">+964 XX XXX XXXX</span>
                     </div>
-                  </a>
+                  </div>
 
                   {/* WhatsApp */}
                   <button 
@@ -746,26 +739,22 @@ export default function App() {
                     </div>
                     <div className="flex flex-col text-right">
                       <span className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">{isRtl ? "الواتساب" : "WhatsApp"}</span>
-                      <span className="text-sm sm:text-base text-white font-semibold tracking-wide ltr-grid">+964 770 317 7889</span>
+                      <span className="text-sm sm:text-base text-white font-semibold tracking-wide ltr-grid">+964 XX XXX XXXX</span>
                     </div>
                   </button>
 
-                  {/* Instagram */}
-                  <a 
-                    href="https://www.instagram.com/feda_creativity?igsh=bTludHcwNms5NWVp"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Feda Creativity official Instagram Profile"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-[#0c1229]/60 border border-navy-800 hover:border-gold-500/30 transition-all group cursor-pointer"
+                  {/* Email */}
+                  <div 
+                    className="flex items-center gap-4 p-4 rounded-xl bg-[#0c1229]/60 border border-navy-800 hover:border-gold-500/30 transition-all group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-pink-500/5 group-hover:bg-pink-500/10 flex items-center justify-center shrink-0">
-                      <Instagram className="w-4 h-4 text-pink-400" />
+                      <Mail className="w-4 h-4 text-pink-400" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">{isRtl ? "إنستغرام" : "Instagram Profile"}</span>
-                      <span className="text-sm sm:text-base text-white font-semibold tracking-wide lowercase">@feda_creativity</span>
+                      <span className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">{isRtl ? "البريد الإلكتروني" : "Email Address"}</span>
+                      <span className="text-sm sm:text-base text-white font-semibold tracking-wide lowercase">info@vocational-training.org</span>
                     </div>
-                  </a>
+                  </div>
                 </div>
               </div>
 
@@ -939,15 +928,10 @@ export default function App() {
             {/* Logo copyright */}
             <div className="flex flex-col items-center md:items-start space-y-2">
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-md bg-white flex items-center justify-center overflow-hidden border border-gold-400">
-                  <img 
-                    src={fedaLogo} 
-                    alt="Feda Creativity Logo" 
-                    className="w-full h-full object-cover rounded-md"
-                    referrerPolicy="no-referrer"
-                  />
+                <div className="w-6 h-6 rounded-md bg-navy-950 flex items-center justify-center border border-gold-500/30">
+                  <GraduationCap className="w-3.5 h-3.5 text-gold-400" />
                 </div>
-                <span className="font-bold text-sm text-white">{isRtl ? "مؤسسة فداء للتدريب" : "Feda Creativity"}</span>
+                <span className="font-bold text-sm text-white">{isRtl ? "شركة التدريب المهني" : "Vocational Training"}</span>
               </div>
               <p className="text-gray-500 text-[11px]">
                 {t.footerRights}
@@ -962,16 +946,14 @@ export default function App() {
               </p>
             </div>
 
-            {/* Right: Social Media Handles */}
+            {/* Right: Contact Handles */}
             <div className="flex items-center justify-center md:justify-end gap-4">
               <a 
-                href="https://www.instagram.com/feda_creativity?igsh=bTludHcwNms5NWVp" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                aria-label="Instagram Profile"
+                href="mailto:info@vocational-training.org" 
+                aria-label="Email Us"
                 className="p-2 rounded-full border border-navy-800 bg-navy-900/40 text-gray-400 hover:text-pink-400 hover:border-pink-500/30 transition-all cursor-pointer"
               >
-                <Instagram className="w-4 h-4" />
+                <Mail className="w-4 h-4" />
               </a>
               <button 
                 onClick={() => triggerWhatsAppRegistration()}
@@ -987,18 +969,9 @@ export default function App() {
       </footer>
 
       {/* FLOAT WHATSAPP BUTTON */}
-      {/* 
-        - Reduced size by 20%
-        - Moved slightly away from edges
-        - Safe margins
-        - Hover/Pulse every few seconds using keyframes
-        - Shadow reduced and soft
-      */}
-      <a
-        href="https://wa.me/9647703177889"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Contact Feda Creativity on WhatsApp"
+      <button
+        onClick={() => triggerWhatsAppRegistration()}
+        aria-label="Contact on WhatsApp"
         className={`fixed z-40 p-3 rounded-full bg-green-500 text-white shadow-md shadow-green-500/10 border border-green-400 hover:scale-105 transition-all duration-300 cursor-pointer ${
           isRtl ? 'bottom-6 left-6' : 'bottom-6 right-6'
         }`}
@@ -1008,7 +981,7 @@ export default function App() {
           {/* Subtle pulse border ring */}
           <span className="absolute inset-0 rounded-full border border-green-400 animate-ping opacity-30 pointer-events-none" />
         </div>
-      </a>
+      </button>
 
       {/* COURSE DETAILS MODAL */}
       <AnimatePresence>
